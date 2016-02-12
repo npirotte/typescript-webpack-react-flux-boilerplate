@@ -1,7 +1,46 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "sourceMap": true,
-        "jsx": "react"
-    }
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"sourceMap": true,
+		"jsx": "react"
+	},
+	"compileOnSave": false,
+	"buildOnSave": false,
+	"exclude": [
+		"node_modules"
+	],
+	"filesGlob": [
+		"./App/**/*.ts",
+		"./App/**/*.tsx"
+	],
+	"files": [
+		"./App/ActionCreators/CommonActionCreators.ts",
+		"./App/ActionCreators/TaskActionCreator.ts",
+		"./App/Actions/AppLoadedAction.ts",
+		"./App/Actions/IAction.ts",
+		"./App/Actions/SayHelloAction.ts",
+		"./App/Actions/TaskAddAction.ts",
+		"./App/Actions/TaskDeleteAction.ts",
+		"./App/Actions/TaskToggleAction.ts",
+		"./App/Dispatcher/Dispatcher.ts",
+		"./App/Log/ActionLogEntry.ts",
+		"./App/Log/ActionLogger.ts",
+		"./App/Stores/BaseStore.ts",
+		"./App/Stores/CommonStore.ts",
+		"./App/Stores/TaskStore.ts",
+		"./App/App.tsx",
+		"./App/Components/ContentPage/__tests__/ContentPage-test.tsx",
+		"./App/Components/ContentPage/ContentBody/ContentBody.tsx",
+		"./App/Components/ContentPage/ContentHeader/ContentHeader.tsx",
+		"./App/Components/ContentPage/ContentPage.tsx",
+		"./App/Components/Tasks/TaskComponent.tsx",
+		"./App/Components/Tasks/TaskFormComponent.tsx",
+		"./App/Components/Tasks/TaskListComponent.tsx",
+		"./App/Components/Tasks/TaskSummary.tsx",
+		"./App/Index.tsx"
+	],
+	"atom": {
+		"rewriteTsconfig": true
+	}
 }

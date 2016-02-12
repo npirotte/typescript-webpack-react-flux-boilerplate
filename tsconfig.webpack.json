@@ -1,9 +1,13 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "sourceMap": true,
-        "jsx": "react"
-    },
-    "files": [
-    ]
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"sourceMap": true,
+		"jsx": "react"
+	},
+	"compileOnSave": false,
+	"buildOnSave": false,
+	"exclude": ["node_modules"],
+	"files": [
+	]
 }

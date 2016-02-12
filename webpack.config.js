@@ -1,12 +1,11 @@
 /// <reference path="typings/node/node.d.ts"/>
 
-var path = require("path");
-var webpackShared = require("./webpack.shared");
+var path = require('path');
+var webpackShared = require('./webpack.shared');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
-
 
 var config = {
   // entry points - each will produce one bundled js file and one css file if there is any css in dependency tree
@@ -15,12 +14,10 @@ var config = {
       'flux',
       'react',
       'react-dom',
-      'babel-polyfill',
-       path.join(__dirname, 'babel', 'babelhelpers.js'),
-       path.join(__dirname, 'babel', 'babelOldIE.js'),
+      'immutable'
     ],
     app: [
-      path.join(__dirname, 'App', 'Index.tsx')
+      path.join(__dirname, 'app', 'Index.tsx')
     ]
   },
 
@@ -30,46 +27,34 @@ var config = {
   },
 
   resolve: {
-    extensions: ['', '.tsx', '.ts', '.js', '.less', '.css'],
-    modulesDirectories: ["node_modules", "resources"],
+    extensions: ['', '.tsx', '.ts', '.js', '.less', '.css', '.scss'],
+    modulesDirectories: ['node_modules', 'resources'],
     alias: {
       'react': path.join(nodeModulesPath, 'react', 'react.js'),
       'react-dom': path.join(nodeModulesPath, 'react-dom', 'dist', 'react-dom.js'),
-      'flux': path.join(nodeModulesPath, 'flux', 'index.js'),
-      'babel-polyfill': path.join(nodeModulesPath, 'babel-polyfill', 'lib', 'index.js'),
+      'flux': path.join(nodeModulesPath, 'flux', 'index.js')
     }
   },
 
   output: {
-      path: path.join(__dirname, 'build'),
-      filename: '[name]_[chunkhash].js'
+    path: path.join(__dirname, 'build'),
+    filename: '[name].js'
   },
 
   module: {
     preLoaders: [
-      { test: /\.ts(x?)$/, loader: "tslint", include: path.resolve(__dirname, "App") },
+      { test: /\.ts(x?)$/, loader: 'tslint', include: path.resolve(__dirname, 'app') }
     ],
     noParse: [],
     loaders: [
-      // TODO remove crazy require when https://github.com/babel/babel-loader/issues/166 is fixed.
-      {
-        test: /\.ts(x?)$/,
-        loader: 'babel?cacheDirectory,plugins[]=' + require.resolve(path.join(nodeModulesPath, 'babel-plugin-external-helpers-2')) +
-                ',presets[]=' + require.resolve(path.join(nodeModulesPath, 'babel-preset-es2015-loose')) +
-                '!ts-loader?configFileName=tsconfig.webpack.json',
-        include: path.resolve(__dirname, "App")
-      },
-      { test: /\.css$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize"), include: path.resolve(__dirname, "App") },
-      { test: /\.less$/, exclude: /\.module\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!less-loader?compress"), include: path.resolve(__dirname, "App") },
-      { test: /\.module\.less$/,
-        loader: ExtractTextPlugin.extract("style-loader","css-loader?minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader?-compress"),
-        include: path.resolve(__dirname, "App") },
-      { test: /\.(jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name]_[hash].[ext]", include: path.resolve(__dirname, "App") }
+      { test: /\.ts(x?)$/, loader: 'awesome-typescript-loader?instance=jsx', include: path.resolve(__dirname, 'app') }
     ]
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors_[chunkhash].js'),
+    // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors_[chunkhash].js'),
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+    new webpack.optimize.UglifyJsPlugin({minimize: true}),
     new ExtractTextPlugin('[name].css', { allChunks: true })
   ],
 
@@ -77,17 +62,17 @@ var config = {
     // Rules are in tslint.json
     emitErrors: true, // false = WARNING for webpack, true = ERROR for webpack
     formattersDirectory: path.join(nodeModulesPath, 'tslint-loader', 'formatters')
-  },
+  }
 };
 
 if (webpackShared.isProduction) {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-     compress: {
-        warnings: false
+    compress: {
+      warnings: false
     }
   }));
   config.plugins.push(new webpack.DefinePlugin({
-    'process.env': {NODE_ENV: '"production"'}
+    'process.env': {NODE_ENV: 'production'}
   }));
 }
 
