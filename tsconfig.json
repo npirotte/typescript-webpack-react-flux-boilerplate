@@ -24,6 +24,7 @@
 		"./App/Dispatcher/Dispatcher.ts",
 		"./App/Log/ActionLogEntry.ts",
 		"./App/Log/ActionLogger.ts",
+		"./App/Stores/__tests__/TaskStore-test.ts",
 		"./App/Stores/BaseStore.ts",
 		"./App/Stores/TaskStore.ts",
 		"./App/App.tsx",
