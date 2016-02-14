@@ -3,6 +3,7 @@
 import React = require("react");
 
 import {taskStore, TTaskList, TTask} from "../../Stores/TaskStore";
+import TaskActionCreator from "../../ActionCreators/TaskActionCreator";
 
 interface IState {
   tasks: TTaskList;
@@ -34,8 +35,17 @@ class TaskSummaryComponent extends React.Component<{}, IState> {
     }).size;
 
     return (
-      <div>Done : {doneNumber} / {tasksNumber}</div>
+      <div>
+        <button className="pull-right btn btn-sm btn-danger" onClick={this.handlerDeleteAll}>
+          Delete all
+        </button>
+        Done : {doneNumber} / {tasksNumber}
+      </div>
     );
+  }
+
+  handlerDeleteAll(): void {
+    TaskActionCreator.deleteAll();
   }
 
   private getStateFromStores (): IState {

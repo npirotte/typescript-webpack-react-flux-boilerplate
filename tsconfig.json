@@ -19,6 +19,7 @@
 		"./App/Actions/IAction.ts",
 		"./App/Actions/TaskAddAction.ts",
 		"./App/Actions/TaskDeleteAction.ts",
+		"./App/Actions/TaskDeleteAllAction.ts",
 		"./App/Actions/TaskToggleAction.ts",
 		"./App/Dispatcher/Dispatcher.ts",
 		"./App/Log/ActionLogEntry.ts",

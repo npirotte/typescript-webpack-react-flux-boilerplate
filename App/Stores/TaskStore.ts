@@ -10,6 +10,7 @@ import IAction from "../Actions/IAction";
 import TaskAddAction from "../Actions/TaskAddAction";
 import TaskToggleAction from "../Actions/TaskToggleAction";
 import TaskDeleteAction from "../Actions/TaskDeleteAction";
+import TaskDeleteAllAction from "../Actions/TaskDeleteAllAction";
 
 export type TTask = Immutable.Map<string, any>
 export type TTaskList = Immutable.List<TTask>;
@@ -56,6 +57,10 @@ class Store extends BaseStore {
     }).toList();
   }
 
+  deleteAllTasks(): void {
+    this.state = this.state.clear();
+  }
+
   private processActions(action: IAction): void {
     if (action instanceof TaskAddAction) {
       this.addTask(action.name);
@@ -65,6 +70,9 @@ class Store extends BaseStore {
       this.emitChange();
     } else if (action instanceof TaskDeleteAction) {
       this.deleteTask(action.task);
+      this.emitChange();
+    } else if (TaskDeleteAllAction) {
+      this.deleteAllTasks();
       this.emitChange();
     }
   }
