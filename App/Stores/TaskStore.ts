@@ -4,8 +4,8 @@ import Immutable = require("immutable");
 import UUID = require("uuid");
 
 import BaseStore from "./BaseStore";
-import IAction from "../Actions/IAction";
 import Dispatcher from "../Dispatcher/Dispatcher";
+import IAction from "../Actions/IAction";
 
 import TaskAddAction from "../Actions/TaskAddAction";
 import TaskToggleAction from "../Actions/TaskToggleAction";
@@ -21,7 +21,7 @@ class Store extends BaseStore {
     super();
     Dispatcher.register((action: IAction) => this.processActions(action));
 
-    // Prepopulate sore
+    // Prepopulate store with fake datas
     this.state = Immutable
       .List<TTask>()
       .push(Immutable.fromJS({name: "Task 1", id: UUID.v1()}))

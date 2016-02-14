@@ -2,10 +2,9 @@
 
 import * as React from "react";
 
-import CommonStore from "../../Stores/CommonStore";
-
 import TaskListComponent from "../Tasks/TaskListComponent";
 import TaskFormComponent from "../Tasks/TaskFormComponent";
+import TaskSummaryComponent from "../Tasks/TaskSummaryComponent";
 
 interface IContentPageState {
   bodyTitle: string;
@@ -14,13 +13,8 @@ interface IContentPageState {
 }
 
 export default class ContentPage extends React.Component<{}, IContentPageState> {
-  private onChange: () => void = () => {
-    this.setState(this.getStateFromStores());
-  };
-
   constructor() {
     super();
-    this.state = this.getStateFromStores();
   }
 
   render(): React.ReactElement<{}> {
@@ -31,25 +25,10 @@ export default class ContentPage extends React.Component<{}, IContentPageState> 
             <h1>Tasks</h1>
             <TaskFormComponent />
             <TaskListComponent />
+            <TaskSummaryComponent />
           </div>
         </div>
       </div>
     );
-  }
-
-  componentDidMount(): void {
-    CommonStore.addListener(this.onChange);
-  }
-
-  componentWillUnmount(): void {
-    CommonStore.removeListener(this.onChange);
-  }
-
-  private getStateFromStores(): IContentPageState {
-    return {
-      bodyTitle: CommonStore.getBodyTitle(),
-      bodySummary: CommonStore.getBodySummary(),
-      sayHelloCount: CommonStore.getSayHelloCount()
-    };
   }
 }

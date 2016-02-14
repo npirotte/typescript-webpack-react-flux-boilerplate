@@ -4,13 +4,11 @@ import React = require("react");
 
 import {taskStore, TTaskList, TTask} from "../../Stores/TaskStore";
 
-import TaskComponent from "./TaskComponent";
-
 interface IState {
   tasks: TTaskList;
 };
 
-export default class TaskListComponent extends React.Component<{}, IState> {
+class TaskSummaryComponent extends React.Component<{}, IState> {
   private onChange: () => void = () => {
     this.setState(this.getStateFromStores());
   };
@@ -28,13 +26,15 @@ export default class TaskListComponent extends React.Component<{}, IState> {
     taskStore.removeListener(this.onChange);
   }
 
-  render (): React.ReactElement<{}> {
+  render(): React.ReactElement<{}> {
+    const tasksNumber: number = this.state.tasks.size;
+    const doneNumber: number = this.state.tasks.filter((task: TTask) => {
+      const compledOn: Date = task.get("completedOn");
+      return compledOn != null;
+    }).size;
+
     return (
-      <div className="list-group">
-        {this.state.tasks.map((task: TTask): React.ReactElement<{}> => {
-          return <TaskComponent task={task} key={task.get("id")} />;
-        }).toArray()}
-      </div>
+      <div>Done : {doneNumber} / {tasksNumber}</div>
     );
   }
 
@@ -44,3 +44,5 @@ export default class TaskListComponent extends React.Component<{}, IState> {
     };
   }
 }
+
+export default TaskSummaryComponent;

@@ -12,7 +12,7 @@ class TaskActionCreator {
   toggle(task: TTask): void {
     Dispatcher.dispatch(new TaskToggleAction(task));
   }
-
+  
   delete(task: TTask): void {
     Dispatcher.dispatch(new TaskDeleteAction(task));
   }
