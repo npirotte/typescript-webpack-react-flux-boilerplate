@@ -5,17 +5,17 @@ import TaskDeleteAction from "../Actions/TaskDeleteAction";
 import {TTask} from "../Stores/TaskStore";
 
 class TaskActionCreator {
-    add(name: string): void {
-        Dispatcher.dispatch(new TaskAddAction(name));
-    }
+  add(name: string): void {
+    Dispatcher.dispatch(new TaskAddAction(name));
+  }
 
-    toggle(task: TTask): void {
-      Dispatcher.dispatch(new TaskToggleAction(task));
-    }
+  toggle(task: TTask): void {
+    Dispatcher.dispatch(new TaskToggleAction(task));
+  }
 
-    delete(task: TTask): void {
-      Dispatcher.dispatch(new TaskDeleteAction(task));
-    }
+  delete(task: TTask): void {
+    Dispatcher.dispatch(new TaskDeleteAction(task));
+  }
 }
 
 export default new TaskActionCreator();
