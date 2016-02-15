@@ -34,8 +34,9 @@ export default class TaskFormComponent extends React.Component<{}, IState> {
     );
   }
 
-  handleChange(e: any): void {
-    this.setState({name: e.target.value});
+  handleChange(e: React.KeyboardEvent): void {
+    const target: HTMLInputElement = e.target as HTMLInputElement;
+    this.setState({name: target.value});
   }
 
   handleSubmit(e: React.FormEvent): void {
