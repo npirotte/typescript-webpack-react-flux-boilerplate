@@ -11,10 +11,16 @@ interface IProps {
 }
 
 export default class TaskComponent extends React.Component<IProps, {}> {
+  private handleToggle: () => void = () => {
+    TaskActionCreator.toggle(this.props.task);
+  };
+
+  private handlerDelete: () => void = () => {
+    TaskActionCreator.delete(this.props.task);
+  };
+
   constructor() {
     super();
-
-    this.handleToggle = this.handleToggle.bind(this);
     this.handlerDelete = this.handlerDelete.bind(this);
   }
 
@@ -33,13 +39,5 @@ export default class TaskComponent extends React.Component<IProps, {}> {
         <button className="pull-right btn btn-xs btn-danger" onClick={this.handlerDelete}>Delete</button>
       </div>
     );
-  }
-
-  handleToggle(): void {
-    TaskActionCreator.toggle(this.props.task);
-  }
-
-  handlerDelete(): void {
-    TaskActionCreator.delete(this.props.task);
   }
 }

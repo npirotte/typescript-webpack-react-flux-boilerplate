@@ -8,11 +8,19 @@ interface IState {
 }
 
 export default class TaskFormComponent extends React.Component<{}, IState> {
+  private handleSubmit: (e: React.FormEvent) => void = (e: React.FormEvent) => {
+    e.preventDefault();
+    TaskActionCreator.add(this.state.name);
+    this.setState({name: null});
+  };
+
+  private handleChange: (e: React.KeyboardEvent) => void = (e: React.KeyboardEvent) => {
+    const target: HTMLInputElement = e.target as HTMLInputElement;
+    this.setState({name: target.value});
+  };
+
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       name: null
     };
@@ -32,16 +40,5 @@ export default class TaskFormComponent extends React.Component<{}, IState> {
         </form>
       </div>
     );
-  }
-
-  handleChange(e: React.KeyboardEvent): void {
-    const target: HTMLInputElement = e.target as HTMLInputElement;
-    this.setState({name: target.value});
-  }
-
-  handleSubmit(e: React.FormEvent): void {
-    e.preventDefault();
-    TaskActionCreator.add(this.state.name);
-    this.setState({name: null});
   }
 }
