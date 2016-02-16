@@ -12,7 +12,7 @@ import TaskToggleAction from "../Actions/TaskToggleAction";
 import TaskDeleteAction from "../Actions/TaskDeleteAction";
 import TaskDeleteAllAction from "../Actions/TaskDeleteAllAction";
 
-export type TTask = Immutable.Map<string, any>
+export type TTask = Immutable.Map<string, any>;
 export type TTaskList = Immutable.List<TTask>;
 
 class Store extends BaseStore {

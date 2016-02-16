@@ -2,9 +2,9 @@
 
 import React = require("react");
 
-import {taskStore, TTaskList} from "../../Stores/TaskStore";
+import {taskStore, TTaskList, TTask} from "../../Stores/TaskStore";
 
-// import TaskComponent from "./TaskComponent";
+import TaskComponent from "./TaskComponent";
 
 interface IState {
   tasks: TTaskList;
@@ -31,7 +31,9 @@ export default class TaskListComponent extends React.Component<{}, IState> {
   render (): React.ReactElement<{}> {
     return (
       <div className="TaskListComponent list-group">
-
+        {this.state.tasks.map((task: TTask): React.ReactElement<{}> => {
+          return <TaskComponent task={task} key={task.get("id")} />;
+        })}
       </div>
     );
   }

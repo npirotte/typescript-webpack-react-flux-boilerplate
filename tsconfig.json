@@ -30,7 +30,6 @@
 		"./App/App.tsx",
 		"./App/Components/ContentPage/__tests__/ContentPage-test.tsx",
 		"./App/Components/ContentPage/ContentPage.tsx",
-		"./App/Components/Tasks/TaskComponent.tsx",
 		"./App/Components/Tasks/TaskFormComponent.tsx",
 		"./App/Components/Tasks/TaskListComponent.tsx",
 		"./App/Index.tsx"
