@@ -4,18 +4,18 @@ import TaskToggleAction from "../Actions/TaskToggleAction";
 import TaskDeleteAction from "../Actions/TaskDeleteAction";
 import TaskDeleteAllAction from "../Actions/TaskDeleteAllAction";
 
-import {TTask} from "../Stores/TaskStore";
+import Task from "../Models/Task";
 
 class TaskActionCreator {
   add(name: string): void {
     Dispatcher.dispatch(new TaskAddAction(name));
   }
 
-  toggle(task: TTask): void {
+  toggle(task: Task): void {
     Dispatcher.dispatch(new TaskToggleAction(task));
   }
 
-  delete(task: TTask): void {
+  delete(task: Task): void {
     Dispatcher.dispatch(new TaskDeleteAction(task));
   }
 

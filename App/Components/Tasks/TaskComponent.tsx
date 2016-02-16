@@ -1,12 +1,12 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
 import React = require("react");
-import {TTask} from "../../Stores/TaskStore";
+import Task from "../../Models/Task";
 
 import TaskActionCreator from "../../ActionCreators/TaskActionCreator";
 
 interface IProps {
-  task: TTask;
+  task: Task;
   key: any;
 }
 
@@ -29,12 +29,11 @@ export default class TaskComponent extends React.Component<IProps, {}> {
   }
 
   render(): React.ReactElement<{}> {
-    let isCompleted: boolean = !!this.props.task.get("completedOn");
     return (
       <div className="list-group-item">
         <label>
-          <input type="checkbox" onChange={this.handleToggle} checked={isCompleted} />
-          <strong> {this.props.task.get("name")}</strong>
+          <input type="checkbox" onChange={this.handleToggle} checked={this.props.task.isCompleted} />
+          <strong> {this.props.task.name}</strong>
         </label>
         <button className="pull-right btn btn-xs btn-danger" onClick={this.handlerDelete}>Delete</button>
       </div>

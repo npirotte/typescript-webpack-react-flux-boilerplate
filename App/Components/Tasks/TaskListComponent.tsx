@@ -2,7 +2,8 @@
 
 import React = require("react");
 
-import {taskStore, TTaskList, TTask} from "../../Stores/TaskStore";
+import {taskStore, TTaskList} from "../../Stores/TaskStore";
+import Task from "../../Models/Task";
 
 import TaskComponent from "./TaskComponent";
 
@@ -31,7 +32,7 @@ export default class TaskListComponent extends React.Component<{}, IState> {
   render (): React.ReactElement<{}> {
     return (
       <div className="list-group">
-        {this.state.tasks.map((task: TTask): React.ReactElement<{}> => {
+        {this.state.tasks.map((task: Task): React.ReactElement<{}> => {
           return <TaskComponent task={task} key={task.get("id")} />;
         }).toArray()}
       </div>

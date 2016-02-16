@@ -1,14 +1,14 @@
 import IAction from "./IAction";
 import ActionLogEntry from "../Log/ActionLogEntry";
-import {TTask} from "../Stores/TaskStore";
+import Task from "../Models/Task";
 
 export default class TaskDeleteAction implements IAction {
   /**
    * Name of the new task to be created
    */
-  task: TTask;
+  task: Task;
 
-  constructor(task: TTask) {
+  constructor(task: Task) {
     this.task = task;
   }
 

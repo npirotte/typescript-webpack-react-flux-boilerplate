@@ -2,7 +2,8 @@
 
 import React = require("react");
 
-import {taskStore, TTaskList, TTask} from "../../Stores/TaskStore";
+import {taskStore, TTaskList} from "../../Stores/TaskStore";
+import Task from "../../Models/Task";
 import TaskActionCreator from "../../ActionCreators/TaskActionCreator";
 
 interface IState {
@@ -29,7 +30,7 @@ class TaskSummaryComponent extends React.Component<{}, IState> {
 
   render(): React.ReactElement<{}> {
     const tasksNumber: number = this.state.tasks.size;
-    const doneNumber: number = this.state.tasks.filter((task: TTask) => {
+    const doneNumber: number = this.state.tasks.filter((task: Task) => {
       const compledOn: Date = task.get("completedOn");
       return compledOn != null;
     }).size;
