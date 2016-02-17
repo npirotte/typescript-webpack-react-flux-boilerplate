@@ -12,8 +12,9 @@ import TaskToggleAction from "../Actions/TaskToggleAction";
 import TaskDeleteAction from "../Actions/TaskDeleteAction";
 import TaskDeleteAllAction from "../Actions/TaskDeleteAllAction";
 
-export type TTask = Immutable.Map<string, any>
-export type TTaskList = Immutable.List<TTask>;
+import Task from "../Models/Task";
+
+export type TTaskList = Immutable.List<Task>;
 
 class Store extends BaseStore {
   private state: TTaskList;
@@ -24,9 +25,9 @@ class Store extends BaseStore {
 
     // Prepopulate store with fake datas
     this.state = Immutable
-      .List<TTask>()
-      .push(Immutable.fromJS({name: "Task 1", id: UUID.v1()}))
-      .push(Immutable.fromJS({name: "Task 2", id: UUID.v1()}));
+      .List<Task>()
+      .push(new Task(Immutable.fromJS({name: "Task 1", id: UUID.v1()})))
+      .push(new Task(Immutable.fromJS({name: "Task 2", id: UUID.v1()})));
   }
 
   getState(): TTaskList {
@@ -38,21 +39,21 @@ class Store extends BaseStore {
       return;
     }
 
-    this.state = this.state.unshift(Immutable.fromJS({name: taskName, id: UUID.v1()}));
+    this.state = this.state.unshift(new Task(Immutable.fromJS({name: taskName, id: UUID.v1()})));
   }
 
-  toggleTask(task: TTask): void {
-    this.state = this.state.map((current: TTask) => {
+  toggleTask(task: Task): void {
+    this.state = this.state.map((current: Task) => {
       if (current === task) {
-        current = current.set("completedOn", current.get("completedOn") ? null : new Date());
+        current = current.set("completedOn", current.completedOn ? null : new Date());
       }
 
       return current;
     }).toList();
   }
 
-  deleteTask(task: TTask): void {
-    this.state = this.state.filter((current: TTask) => {
+  deleteTask(task: Task): void {
+    this.state = this.state.filter((current: Task) => {
       return current !== task;
     }).toList();
   }

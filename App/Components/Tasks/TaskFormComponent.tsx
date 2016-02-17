@@ -18,7 +18,12 @@ export default class TaskFormComponent extends React.Component<{}, IState> {
   render(): React.ReactElement<{}> {
     return (
       <div className="TaskFormComponent">
-
+        <form>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Task name" />
+        </form>
       </div>
     );
   }

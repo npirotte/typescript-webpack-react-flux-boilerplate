@@ -31,7 +31,6 @@ export default class TaskListComponent extends React.Component<{}, IState> {
   render (): React.ReactElement<{}> {
     return (
       <div className="TaskListComponent list-group">
-
       </div>
     );
   }

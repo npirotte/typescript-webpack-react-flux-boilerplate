@@ -24,6 +24,8 @@
 		"./App/Dispatcher/Dispatcher.ts",
 		"./App/Log/ActionLogEntry.ts",
 		"./App/Log/ActionLogger.ts",
+		"./App/Models/Model.ts",
+		"./App/Models/Task.ts",
 		"./App/Stores/__tests__/TaskStore-test.ts",
 		"./App/Stores/BaseStore.ts",
 		"./App/Stores/TaskStore.ts",
@@ -33,6 +35,7 @@
 		"./App/Components/Tasks/TaskComponent.tsx",
 		"./App/Components/Tasks/TaskFormComponent.tsx",
 		"./App/Components/Tasks/TaskListComponent.tsx",
+		"./App/Components/Tasks/TaskSummaryComponent.tsx",
 		"./App/Index.tsx"
 	],
 	"atom": {
