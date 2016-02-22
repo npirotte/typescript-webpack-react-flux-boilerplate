@@ -1,6 +1,11 @@
 /// <reference path="../../typings/tsd.d.ts" />
 import Immutable = require("immutable");
 
+/**
+ * Abstract class for create data models
+ * This base model provides an abstraction layout over Immutable.Map by setting getters.
+ * Models provide auto completion and type checking other the Immutable.Map.get function as well as additionnal logic.
+ */
 export default class Model<K, V> {
   instance: Immutable.Map<K, V>;
 

@@ -1,18 +1,15 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-import * as React from "react";
+import React = require("react");
 
 import TaskListComponent from "../Tasks/TaskListComponent";
 import TaskFormComponent from "../Tasks/TaskFormComponent";
 import TaskSummaryComponent from "../Tasks/TaskSummaryComponent";
 
-interface IContentPageState {
-  bodyTitle: string;
-  bodySummary: string;
-  sayHelloCount: number;
-}
-
-export default class ContentPage extends React.Component<{}, IContentPageState> {
+/**
+ * This is our master page component.
+ */
+export default class ContentPage extends React.Component<{}, {}> {
   constructor() {
     super();
   }

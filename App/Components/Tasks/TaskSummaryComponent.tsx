@@ -2,6 +2,9 @@
 
 import React = require("react");
 
+/**
+ * @note: For the typing of our state, we need to import the task list type TTaskList exposed by our TaskStore module
+ */
 import {taskStore, TTaskList} from "../../Stores/TaskStore";
 import Task from "../../Models/Task";
 import TaskActionCreator from "../../ActionCreators/TaskActionCreator";
@@ -10,7 +13,12 @@ interface IState {
   tasks: TTaskList;
 };
 
-class TaskSummaryComponent extends React.Component<{}, IState> {
+export default class TaskSummaryComponent extends React.Component<{}, IState> {
+  /**
+   * @note: Here the usage of lambda expressions () => {} allow us to get rid of the manual context binding in the constructor
+   * and thus allow a safer and clearer coding.
+   * The private declaration is optionnal an simply prevent the handlers to be used outside of the component itself
+   */
   private onChange: () => void = () => {
     this.setState(this.getStateFromStores());
   };
@@ -19,11 +27,15 @@ class TaskSummaryComponent extends React.Component<{}, IState> {
     super();
     this.state = this.getStateFromStores();
   }
-
+  /**
+   * Add change listenners to stores
+   */
   componentDidMount(): void {
     taskStore.addListener(this.onChange);
   }
-
+  /**
+   * Remove change listenners to stores
+   */
   componentWillUnmount(): void {
     taskStore.removeListener(this.onChange);
   }
@@ -48,12 +60,12 @@ class TaskSummaryComponent extends React.Component<{}, IState> {
   handlerDeleteAll(): void {
     TaskActionCreator.deleteAll();
   }
-
+  /**
+   * Centralise binding between the component and the store in one unique function.
+   */
   private getStateFromStores (): IState {
     return {
       tasks: taskStore.getState()
     };
   }
 }
-
-export default TaskSummaryComponent;

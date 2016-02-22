@@ -14,6 +14,9 @@ import TaskDeleteAllAction from "../Actions/TaskDeleteAllAction";
 
 import Task from "../Models/Task";
 
+/**
+ * @note: We export the task list type to provide a unique task list type declaration to be used in components.
+ */
 export type TTaskList = Immutable.List<Task>;
 
 class Store extends BaseStore {
@@ -23,7 +26,7 @@ class Store extends BaseStore {
     super();
     Dispatcher.register((action: IAction) => this.processActions(action));
 
-    // Prepopulate store with fake datas
+    // Prepopulate store with fake data
     this.state = Immutable
       .List<Task>()
       .push(new Task(Immutable.fromJS({name: "Task 1", id: UUID.v1()})))
@@ -39,7 +42,14 @@ class Store extends BaseStore {
       return;
     }
 
-    this.state = this.state.unshift(new Task(Immutable.fromJS({name: taskName, id: UUID.v1()})));
+    // Creation of a new task object
+    const task: Task = new Task(Immutable.fromJS({
+      name: taskName,
+      id: UUID.v1()
+    }));
+
+    // Push the task un top of the task list
+    this.state = this.state.unshift(task);
   }
 
   toggleTask(task: Task): void {
@@ -61,7 +71,9 @@ class Store extends BaseStore {
   deleteAllTasks(): void {
     this.state = this.state.clear();
   }
-
+  /**
+   * Catch actions base on the instanceof dispatched actions and trigger class methods if needed
+   */
   private processActions(action: IAction): void {
     if (action instanceof TaskAddAction) {
       this.addTask(action.name);
