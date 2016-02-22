@@ -9,10 +9,12 @@ import TaskActionCreator from "../../ActionCreators/TaskActionCreator";
  * @note: Interresting thing here. See how we can validate our props with a very fine tuned interface.
  * This is far mush better thant the original React.PropTypes !
  * Furthermore you can also velidate your state the exact same way.
+ *
+ * @note: React.Props<any> provides key, ref and children properties,
+ * so we don't have to redefine it for each component
  */
-interface IProps {
+interface IProps extends React.Props<any> {
   task: Task;
-  key: string|number;
 }
 
 /**
