@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/npirotte/typescript-webpack-react-flux-todo.svg?branch=master)](https://travis-ci.org/npirotte/typescript-webpack-react-flux-todo)
+
+![Deps Status](https://david-dm.org/npirotte/typescript-webpack-react-flux-todo.svg)
+
 # typescript-webpack-react-flux-boilerplate
 This boilerplate combines:
 * [Typescript](https://github.com/Microsoft/TypeScript)
