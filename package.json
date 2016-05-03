@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^0.15.10",
+    "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "~3.9.0",
     "gulp-tslint": "~4.3.1",
     "gulp-watch": "~4.3.5",
